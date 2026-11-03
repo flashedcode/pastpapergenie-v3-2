@@ -1,0 +1,1 @@
+Put each game in its own folder here, e.g. resources/my-game/index.html, then add a line for it in script.js.

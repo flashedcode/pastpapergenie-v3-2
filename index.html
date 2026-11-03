@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pastpapergenie v3: free browser games</title>
+<meta name="description" content="Free browser games that run in your tab, plus an anime browser that shows where each show streams officially.">
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+<div id="page">
+<header>
+<p class="logo"><a href="#/games">pastpapergenie <small>v3</small></a></p>
+<p class="blurb">Browser games and an anime browser.</p>
+</header>
+<nav>
+<a class="start" href="#/games">Games</a>
+<a href="anime/">Anime</a>
+<a href="#/recommended">Recommended</a>
+<a href="#/saved">Saved</a>
+<a href="#/settings">Settings</a>
+<a href="#/about">About</a>
+<input id="q" type="search" placeholder="search games" aria-label="Search games">
+</nav>
+<div id="cols">
+<main>
+
+<section id="games">
+<div class="win"><h2>Games</h2><div class="in">
+<p>Pick a game. Nothing to install and no account. Saved games and history stay in this browser.</p>
+<p class="tags" id="tags"></p>
+<table id="list"></table>
+</div></div>
+</section>
+
+<section id="play" hidden>
+<p class="small"><a href="#/games">All games</a></p>
+<div class="win"><h2 id="ptitle"></h2><div class="in">
+<div class="stage" id="stage"><iframe id="frame" title="Game" sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-fullscreen" referrerpolicy="no-referrer" allow="fullscreen; gamepad" allowfullscreen></iframe></div>
+<button class="go" id="fs">Fullscreen</button> <button id="pfav" data-fav="">save</button>
+</div></div>
+</section>
+
+<section id="saved" hidden>
+<div class="win"><h2>Saved games</h2><div class="in" id="savedlist"></div></div>
+</section>
+
+<section id="recommended" hidden>
+<div class="win"><h2>Picked</h2><div class="in"><ul id="picks"></ul></div></div>
+<div class="win"><h2>Worth a look elsewhere</h2><div class="in">
+<p>Not playable here yet. Each link goes to the project's own page, so check its licence before you host anything.</p>
+<ul id="elsewhere"></ul>
+</div></div>
+</section>
+
+<section id="settings" hidden>
+<div class="win"><h2>Look</h2><div class="in">
+<p class="row"><label for="p-theme">Theme</label><select id="p-theme" data-pref="theme"><option value="aero">Aero (default)</option><option value="luna">Luna, XP blue</option><option value="classic">Classic green</option><option value="night">Night</option></select></p>
+<p class="row"><label for="p-font">Font</label><select id="p-font" data-pref="font"><option value="tahoma">Tahoma</option><option value="verdana">Verdana</option><option value="georgia">Georgia</option><option value="system">Your system font</option></select></p>
+<p class="row"><label for="p-size">Text size</label><select id="p-size" data-pref="size"><option value="s">Small</option><option value="m">Normal</option><option value="l">Large</option></select></p>
+<p class="row"><label for="p-width">Page width</label><select id="p-width" data-pref="width"><option value="n">Narrow</option><option value="m">Normal</option><option value="w">Wide</option></select></p>
+<p class="row"><label for="p-corners">Corners</label><select id="p-corners" data-pref="corners"><option value="rd">Rounded</option><option value="sq">Square</option></select></p>
+</div></div>
+<div class="win"><h2>Games</h2><div class="in">
+<p class="row"><label for="p-height">Game window height</label><select id="p-height" data-pref="height"><option value="s">Short</option><option value="m">Normal</option><option value="t">Tall</option></select></p>
+<p class="row"><label><input type="checkbox" data-pref="norecent"> Don't remember what I play</label></p>
+</div></div>
+<div class="win"><h2>Your data</h2><div class="in">
+<p>Everything is stored in this browser only. Export it to move to another device.</p>
+<p class="row"><button id="export">Export my saves</button> <label class="btn">Import a file<input id="import" type="file" accept="application/json" hidden></label> <button id="clear">Clear everything</button></p>
+</div></div>
+</section>
+
+<section id="about" hidden>
+<div class="win"><h2>About</h2><div class="in">
+<p>A small site I run myself. Games are open source, free to share, or shown with the maker's say-so. Some are shown from the maker's own page inside a frame that sends no referrer.</p>
+<p>Saved games, history and settings stay in your browser. I don't get them and there's no account.</p>
+<p>If you made something here and want it gone, or want your game added, use the contact in the footer.</p>
+</div></div>
+</section>
+
+</main>
+<aside>
+<!-- Your own sponsor banner goes here, for example: <div class="win"><div class="in"><a href="https://..."><img src="resources/banner.png" alt="..." width="200"></a></div></div> -->
+<div class="win" id="recs"></div>
+<div class="win" id="recent"></div>
+</aside>
+</div>
+<footer><p>Licence problem or takedown request: <!-- put your email here --> contact details are being set up and will be here soon.</p></footer>
+</div>
+</body>
+</html>
