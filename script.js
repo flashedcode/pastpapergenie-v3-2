@@ -6,6 +6,7 @@ const GAMES = [
   { id: "cyberpunk", title: "Actual CYBERPUNK 2077 on browser somehow ", url: "https://cyberpunk2077.lol/", tags: ["shooter", "fps"], pick: true },
   { id: "terraria", title: "Terraria", url: "https://playterraria.lol/", tags: ["shooter", "diy"], pick: true },
   { id: "eacricket", title: "EA Sports Cricket 07", url: "https://cricket07.dhaiwat.com/", tags: ["sports", "ea"], pick: true },
+  { id: "eacricket", title: "Sonic The Hedgehog (1991)", url: "https://jojudge.com/ICBINS1/", tags: ["retro", "sega"], pick: true },
 ];
 
 const ELSEWHERE = [
