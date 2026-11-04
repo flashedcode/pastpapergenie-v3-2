@@ -9,7 +9,8 @@
 const GAMES = [
   { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true },
   { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true },
-  
+  { id: "fortnite", title: "Fortnite OG (not working rn)", url: "https://fortniteog.lol/", tags: ["fps", "shooter"], pick: true },
+  { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], pick: true },
 ];
 
 // ---------- 2. Recommended page: links to things that aren't playable here ----------
