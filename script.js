@@ -7,7 +7,9 @@
 // tags: used for the filters and for "You might like"
 // pick: true puts it on the Recommended page.   img: optional thumbnail path
 const GAMES = [
-  { id: "claude-of-duty", title: "Claude of Duty: Vibe Slops II", url: "https://froydinger.github.io/claude-of-duty/", tags: ["shooter", "fps"], pick: true },
+  { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true },
+  { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true },
+  
 ];
 
 // ---------- 2. Recommended page: links to things that aren't playable here ----------
