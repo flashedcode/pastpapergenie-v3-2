@@ -2,7 +2,7 @@
 const GAMES = [
   { id: "amongus", title: "Among US (2019 version) multiplayer with real people", url: "https://wasm.rip/files/amongus/legacy/", tags: ["shooter", "fps"], pick: true },
   { id: "gta5", title: "Real Gta V on browser somehow ", url: "https://playgta5.com/", tags: ["shooter", "fps"], pick: true },
-  { id: "gta5", title: "Real Gta V on browser somehow ", url: "https://playgta5.com/", tags: ["shooter", "fps"], pick: true },
+  { id: "csgo", title: "Real Gta V on browser somehow ", url: "https://webstrike.me/", tags: ["shooter", "fps"], pick: true },
   { id: "gta5", title: "Real Gta V on browser somehow ", url: "https://playgta5.com/", tags: ["shooter", "fps"], pick: true },
   { id: "gta5", title: "Real Gta V on browser somehow ", url: "https://playgta5.com/", tags: ["shooter", "fps"], pick: true },
 ];
