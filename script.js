@@ -1,7 +1,7 @@
 
 const GAMES = [
   { id: "amongus", title: "Among US (2019 version) multiplayer with real people", url: "https://wasm.rip/files/amongus/legacy/", tags: ["shooter", "fps"], pick: true },
-];
+  { id: "gta5", title: "Real Gta V on browser somehow ", url: "https://playgta5.com/", tags: ["shooter", "fps"], pick: true },];
 
 const ELSEWHERE = [
   { title: "Lichess", url: "https://lichess.org/", note: "Free online chess against real people. It has no ads." },
