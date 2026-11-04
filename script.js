@@ -3,7 +3,7 @@ const GAMES = [
   { id: "amongus", title: "Among US (2019 version) multiplayer with real people", url: "https://wasm.rip/files/amongus/legacy/", tags: ["psychological", "imposter"], pick: true },
   { id: "gta5", title: "Real GTA V on browser somehow ", url: "https://playgta5.com/", tags: ["shooter", "fps"], pick: true },
   { id: "csgo", title: "Counter Strike ", url: "https://webstrike.me/", tags: ["shooter", "fps"], pick: true },
-  { id: "cyberpunk", title: "Actual CYBERPUBK 2077 on browser somehow ", url: "https://cyberpunk2077.lol/", tags: ["shooter", "fps"], pick: true },
+  { id: "cyberpunk", title: "Actual CYBERPUNK 2077 on browser somehow ", url: "https://cyberpunk2077.lol/", tags: ["shooter", "fps"], pick: true },
   { id: "terraria", title: "Terraria", url: "https://playterraria.lol/", tags: ["shooter", "fps"], pick: true },
 ];
 
