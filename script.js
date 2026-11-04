@@ -1,27 +1,11 @@
-// pastpapergenie v3. Everything for the home page lives in this one file.
 
-// ---------- 1. YOUR GAMES: add or delete lines here ----------
-// url:  a full https:// address (shown in a frame) or a path in this repo, like "resources/my-game/index.html"
-// tags: used for the filters and for "You might like"
-// pick: true puts it on the Recommended page.   img: optional thumbnail path
 const GAMES = [
-  { id: "claude-of-duty", title: "Claude of Duty: Vibe Slops II", url: "https://froydinger.github.io/claude-of-duty/", tags: ["shooter", "fps"], pick: true },
+  { id: "amongus", title: "Among US (2019 version) multiplayer with real people", url: "https://wasm.rip/files/amongus/legacy/", tags: ["shooter", "fps"], pick: true },
 ];
 
-// ---------- 2. Recommended page: links to things that aren't playable here ----------
 const ELSEWHERE = [
   { title: "Lichess", url: "https://lichess.org/", note: "Free online chess against real people. It has no ads." },
   { title: "Doom (shareware episode)", url: "https://github.com/midzer/chocolate-doom", note: "The first Doom episode through the Chocolate Doom engine." },
-  { title: "Anarch", url: "https://gitlab.com/drummyfish/anarch", note: "A tiny Doom-style shooter, public domain." },
-  { title: "Blobby Volley 2", url: "https://github.com/danielknobe/blobbyvolley2", note: "Volleyball with blobs. Two players on one keyboard." },
-  { title: "Bombermaaan", url: "https://github.com/midzer/Bombermaaan", note: "A Bomberman clone for up to six players." },
-  { title: "Jump 'n Bump", url: "https://github.com/midzer/jumpnbump", note: "Bunnies jump on each other's heads. Up to four players." },
-  { title: "C-Dogs SDL", url: "https://github.com/midzer/cdogs-sdl", note: "Top-down shooter with co-op." },
-  { title: "Chromium B.S.U.", url: "https://github.com/midzer/chromium-bsu", note: "A vertical space shooter." },
-  { title: "AstroMenace", url: "https://github.com/midzer/astromenace", note: "A 3D space shooter." },
-  { title: "Brogue CE", url: "https://github.com/midzer/BrogueCE", note: "Roguelike dungeon crawler, community edition." },
-  { title: "Angband", url: "https://github.com/angband/angband", note: "A long-running roguelike." },
-  { title: "Mindustry", url: "https://github.com/khoichon/mindustry-web", note: "Factory building and tower defence. Online co-op needs a server." },
 ];
 
 // ---------- 3. Settings (runs on every page, including /anime) ----------
