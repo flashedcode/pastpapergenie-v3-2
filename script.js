@@ -2,7 +2,7 @@
 const GAMES = [ 
   { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true }, 
   { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true }, 
-  { id: "fortnite", title: "Fortnite OG (not working rn)", url: "https://fortniteog.lol/", tags: ["fps", "shooter"], pick: true }, 
+  { id: "fortnite", title: "EA Cricket 07", url: "https://cricket07.dhaiwat.com/", tags: ["fps", "shooter"], pick: true }, 
   { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], pick: true }, ];
 
 // title:  the headline          date:   YYYY-MM-DD (newest shows first)
