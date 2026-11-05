@@ -1,32 +1,25 @@
 // pastpapergenie v3. Everything for the home page lives in this one file.
 
-// ---------- 1. YOUR GAMES ----------
-// Folders in resources/ are found automatically (see README). Use this list only for
-// games hosted elsewhere. A line here wins over an auto-found game with the same id.
+// ---------- 1. YOUR GAMES: add or delete lines here ----------
+// featured: true  shows the game in the "Featured games" section at the top. Leave it out and it goes in "All games".
 // url:  a full https:// address (shown in a frame) or a path in this repo, like "resources/my-game/index.html"
 // tags: used for the filters and for "You might like"
-// pick: true puts it on the Recommended page.   img: optional thumbnail path
-const GAMES = [
-  { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true },
-  { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true },
-  { id: "fortnite", title: "Fortnite OG (not working rn)", url: "https://fortniteog.lol/", tags: ["fps", "shooter"], pick: true },
-  { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], pick: true },
-];
+// img: optional thumbnail path
+const GAMES = [ 
+  { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true }, 
+  { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true }, 
+  { id: "fortnite", title: "Fortnite OG (not working rn)", url: "https://fortniteog.lol/", tags: ["fps", "shooter"], pick: true }, 
+  { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], pick: true }, ];
 
-// ---------- 2. Recommended page: links to things that aren't playable here ----------
-const ELSEWHERE = [
-  { title: "Lichess", url: "https://lichess.org/", note: "Free online chess against real people. It has no ads." },
-  { title: "Doom (shareware episode)", url: "https://github.com/midzer/chocolate-doom", note: "The first Doom episode through the Chocolate Doom engine." },
-  { title: "Anarch", url: "https://gitlab.com/drummyfish/anarch", note: "A tiny Doom-style shooter, public domain." },
-  { title: "Blobby Volley 2", url: "https://github.com/danielknobe/blobbyvolley2", note: "Volleyball with blobs. Two players on one keyboard." },
-  { title: "Bombermaaan", url: "https://github.com/midzer/Bombermaaan", note: "A Bomberman clone for up to six players." },
-  { title: "Jump 'n Bump", url: "https://github.com/midzer/jumpnbump", note: "Bunnies jump on each other's heads. Up to four players." },
-  { title: "C-Dogs SDL", url: "https://github.com/midzer/cdogs-sdl", note: "Top-down shooter with co-op." },
-  { title: "Chromium B.S.U.", url: "https://github.com/midzer/chromium-bsu", note: "A vertical space shooter." },
-  { title: "AstroMenace", url: "https://github.com/midzer/astromenace", note: "A 3D space shooter." },
-  { title: "Brogue CE", url: "https://github.com/midzer/BrogueCE", note: "Roguelike dungeon crawler, community edition." },
-  { title: "Angband", url: "https://github.com/angband/angband", note: "A long-running roguelike." },
-  { title: "Mindustry", url: "https://github.com/khoichon/mindustry-web", note: "Factory building and tower defence. Online co-op needs a server." },
+// ---------- 2. ANNOUNCEMENTS: only you can post, because they live in this file ----------
+// title:  the headline          date:   YYYY-MM-DD (newest shows first)
+// body:   plain text (blank line = new paragraph) or HTML if you want links, e.g. <a href="...">here</a>
+// pinned: true keeps it at the top        author: optional
+const ANNOUNCEMENTS = [
+  { title: "Welcome to pastpapergenie v3", date: "2026-11-05", pinned: true,
+    body: "Games are at the top, with Featured games first and everything else under All games.\n\nYour saves and settings stay in your browser." },
+  { title: "New: Aero Pink theme", date: "2026-11-05",
+    body: "Open Settings and pick Aero Pink under Theme." },
 ];
 
 // ---------- 3. Settings (runs on every page, including /anime) ----------
@@ -45,32 +38,42 @@ function applyPrefs() {
 }
 applyPrefs();
 
-// ---------- 4. Home page ----------
-// Load games.json (built automatically from the folders in resources/), then start the page.
-document.addEventListener('DOMContentLoaded', function () {
-  if (!document.getElementById('games')) return;
-  fetch('games.json', { cache: 'no-cache' })
-    .then(function (r) { return r.ok ? r.json() : []; })
-    .catch(function () { return []; })
-    .then(function (auto) {
-      auto.forEach(function (g) { if (!GAMES.some(function (x) { return x.id === g.id; })) GAMES.push(g); });
-      start();
-    });
-});
+// ---------- 3b. Highlight the current page in the nav (runs on every page, including /anime) ----------
+function markNav() {
+  var links = document.querySelectorAll('nav a'); if (!links.length) return;
+  var strip = function (p) { return p.replace(/index\.html$/, ''); };
+  var view = (location.hash.replace(/^#\/?/, '') || 'games').split('/')[0];
+  if (['games', 'saved', 'announcements', 'settings', 'about'].indexOf(view) < 0) view = 'games';
+  Array.prototype.forEach.call(links, function (a) {
+    var href = a.getAttribute('href') || '';
+    if (/#\/recommended$/.test(href)) { a.setAttribute('href', href.replace('#/recommended', '#/announcements')); a.textContent = 'Announcements'; }
+    var same = a.host === location.host && strip(a.pathname) === strip(location.pathname);
+    var on = same && (!a.hash || a.hash === '#/' + view);
+    a.classList.toggle('start', on);
+    if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+}
+document.addEventListener('DOMContentLoaded', markNav);
+window.addEventListener('hashchange', markNav);
 
-function start() {
+// ---------- 4. Home page ----------
+document.addEventListener('DOMContentLoaded', function () {
   var $ = function (id) { return document.getElementById(id); };
   if (!$('games')) return;   // the anime page only needs the settings above
-  var VIEWS = ['games', 'play', 'saved', 'recommended', 'settings', 'about'];
+  var VIEWS = ['games', 'play', 'saved', 'announcements', 'settings', 'about'];
   var favs = get('ppg_favs', []), recent = get('ppg_recent', []), tag = '', q = '';
   var find = function (id) { return GAMES.filter(function (g) { return g.id === id; })[0]; };
   function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
+  function colour(g) { var n = 0; for (var i = 0; i < g.id.length; i++) n = (n * 31 + g.id.charCodeAt(i)) % 40; return 'hsl(' + (200 + n) + ' 55% 42%)'; }
+  function initials(g) { return g.title.split(/\s+/).map(function (w) { return w[0]; }).join('').slice(0, 3); }
   function tile(g) {
     if (g.img) return '<img class="tile" src="' + esc(g.img) + '" alt="" width="48" height="36">';
-    var n = 0; for (var i = 0; i < g.id.length; i++) n = (n * 31 + g.id.charCodeAt(i)) % 40;
-    var ini = g.title.split(/\s+/).map(function (w) { return w[0]; }).join('').slice(0, 3);
-    return '<span class="tile" style="background:hsl(' + (200 + n) + ' 55% 42%)">' + esc(ini) + '</span>';
+    return '<span class="tile" style="background:' + colour(g) + '">' + esc(initials(g)) + '</span>';
+  }
+  function card(g) {
+    var pic = g.img ? '<img src="' + esc(g.img) + '" alt="">' : '<div class="ph" style="background:' + colour(g) + '">' + esc(initials(g)) + '</div>';
+    return '<a class="card" href="#/play/' + g.id + '">' + pic + '<span>' + esc(g.title) + '</span></a>';
   }
   function row(g) {
     return '<tr><td>' + tile(g) + '</td><td class="t"><a href="#/play/' + g.id + '">' + esc(g.title) + '</a><br><span class="small">' + esc(g.tags.join(', ')) +
@@ -82,7 +85,11 @@ function start() {
       return '<a href="#/games" data-tag="' + esc(t) + '"' + (t === tag ? ' class="on"' : '') + '>' + (t ? esc(t) : 'all') + '</a>';
     }).join(' ');
     var list = GAMES.filter(function (g) { return (!tag || g.tags.indexOf(tag) >= 0) && (g.title + ' ' + g.tags.join(' ')).toLowerCase().indexOf(q) >= 0; });
-    $('list').innerHTML = list.length ? '<tr><th></th><th>Title</th><th></th></tr>' + list.map(row).join('') : '<tr><td>No games match.</td></tr>';
+    var feat = list.filter(function (g) { return g.featured; }), rest = list.filter(function (g) { return !g.featured; });
+    $('featured').innerHTML = feat.map(card).join('');
+    $('featwin').hidden = !feat.length;
+    $('list').innerHTML = rest.length ? '<tr><th></th><th>Title</th><th></th></tr>' + rest.map(row).join('') : (list.length ? '' : '<tr><td>No games match.</td></tr>');
+    $('allwin').hidden = !rest.length && list.length > 0;
     paint();
   }
   function paint() {
@@ -97,7 +104,7 @@ function start() {
     var w = {};
     favs.concat(recent.slice(0, 5)).forEach(function (id) { var g = find(id); if (g) g.tags.forEach(function (t) { w[t] = (w[t] || 0) + 1; }); });
     var rec = GAMES.filter(function (g) { return favs.indexOf(g.id) < 0 && recent.slice(0, 3).indexOf(g.id) < 0; })
-      .map(function (g) { return { g: g, s: g.tags.reduce(function (a, t) { return a + (w[t] || 0); }, 0) + (g.pick ? 0.5 : 0) }; })
+      .map(function (g) { return { g: g, s: g.tags.reduce(function (a, t) { return a + (w[t] || 0); }, 0) }; })
       .sort(function (a, b) { return b.s - a.s; }).slice(0, 5).map(function (x) { return x.g; });
     box('recs', 'You might like', rec);
     box('recent', 'Played lately', recent.map(function (id) { return find(id); }).filter(Boolean).slice(0, 5));
@@ -111,15 +118,25 @@ function start() {
     sidebar(); paint();
   }
   function route() {
-    var h = location.hash.replace(/^#\/?/, '') || 'games', m = h.match(/^play\/(.+)$/), view = m ? 'play' : h;
+    var h = location.hash.replace(/^#\/?/, '') || 'games'; if (h === 'recommended') h = 'announcements';
+    var m = h.match(/^play\/(.+)$/), view = m ? 'play' : h;
     if (VIEWS.indexOf(view) < 0 || (view === 'play' && !m)) view = 'games';
     document.querySelectorAll('main > section').forEach(function (s) { s.hidden = s.id !== view; });
     if (view === 'play') openGame(m[1]); else { $('frame').src = 'about:blank'; sidebar(); }
     window.scrollTo(0, 0);
   }
 
-  $('picks').innerHTML = GAMES.filter(function (g) { return g.pick; }).map(function (g) { return '<li><a href="#/play/' + g.id + '">' + esc(g.title) + '</a></li>'; }).join('');
-  $('elsewhere').innerHTML = ELSEWHERE.map(function (x) { return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.title) + '</a>: ' + esc(x.note) + '</li>'; }).join('');
+  function when(d) { var t = new Date(d + 'T00:00:00'); return isNaN(t) ? esc(d || '') : t.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); }
+  function posts() {
+    var list = ANNOUNCEMENTS.slice().sort(function (a, b) { return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || String(b.date).localeCompare(String(a.date)); });
+    $('posts').innerHTML = list.length ? list.map(function (p) {
+      var body = String(p.body || '');
+      if (!/<\w/.test(body)) body = '<p>' + esc(body).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>') + '</p>';
+      return '<div class="win post"><h2>' + esc(p.title) + (p.pinned ? ' <span class="pin">Pinned</span>' : '') + (p.date ? '<span class="date">' + when(p.date) + '</span>' : '') +
+        '</h2><div class="in">' + body + (p.author ? '<p class="small">Posted by ' + esc(p.author) + '</p>' : '') + '</div></div>';
+    }).join('') : '<div class="win"><div class="in">No announcements yet.</div></div>';
+  }
+  posts();
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-fav]'), t = e.target.closest('[data-tag]');
@@ -153,4 +170,4 @@ function start() {
 
   window.addEventListener('hashchange', route);
   renderList(); route();
-}
+});
