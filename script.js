@@ -1,12 +1,4 @@
-// pastpapergenie v3. Everything for the home page lives in this one file.
 
-// ---------- 1. YOUR GAMES: two lists, add or delete lines in either ----------
-// RECOMMENDED = your handpicked games (the big cards at the top).
-// GAMES       = any other games. "All games" shows everything from both lists, so you never have to list a game twice.
-// url:  a full https:// address (shown in a frame) or a path in this repo, like "resources/my-game/index.html"
-// tags: used for the filters and for "You might like"
-// img: optional thumbnail path
-// isolated: true  only for games in resources/ that say "needs cross-origin isolation". They open on their own page (play.html).
 const RECOMMENDED = [
   { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], img: "https://static.wikia.nocookie.net/among-us-wiki/images/8/84/Among_Us.png/revision/latest?cb=20240408020746" },
   { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg48NfYIrPgKgFUoMBL5Zr7o2x83urW3B64kEpg_HSNlN0CpYdIQEjBvU&s=10" },
@@ -14,7 +6,6 @@ const RECOMMENDED = [
 
 const GAMES = [
 [
-  { id: "resources", title: "Resources", url: "https://fallacious0.dedyn.io/Resources/", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/resources/logo" },
   { id: "1.12-u2-wasm", title: "1.12 U2 Wasm", url: "https://fallacious0.dedyn.io/Resources/1.12-u2-wasm.html", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/1.12-u2-wasm/logo" },
   { id: "10-minutes-till-dawn", title: "10 Minutes Till Dawn", url: "https://fallacious0.dedyn.io/Resources/10-minutes-till-dawn", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/10-minutes-till-dawn/logo" },
   { id: "100ng", title: "100ng", url: "https://fallacious0.dedyn.io/Resources/100ng", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/100ng/logo" },
