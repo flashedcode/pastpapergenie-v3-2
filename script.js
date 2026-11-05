@@ -1,5 +1,5 @@
 const RECOMMENDED = [
-  { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], img: "https://static.wikia.nocookie.net/among-us-wiki/images/8/84/Among_Us.png/revision/latest?cb=20240408020746" },
+  { id: "among-us", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], img: "https://static.wikia.nocookie.net/among-us-wiki/images/8/84/Among_Us.png/revision/latest?cb=20240408020746" },
   { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg48NfYIrPgKgFUoMBL5Zr7o2x83urW3B64kEpg_HSNlN0CpYdIQEjBvU&s=10" },
   { id: "dotgui", title: "PastPaperGenie Game Unblocker", url: "https://dotgui.xrompf-tech.workers.dev/start", tags: ["proxy", "our-exclusive"],},
 ];
