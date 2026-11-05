@@ -1,25 +1,27 @@
-// pastpapergenie v3. Everything for the home page lives in this one file.
 
-// ---------- 1. YOUR GAMES: add or delete lines here ----------
-// featured: true  shows the game in the "Featured games" section at the top. Leave it out and it goes in "All games".
-// url:  a full https:// address (shown in a frame) or a path in this repo, like "resources/my-game/index.html"
-// tags: used for the filters and for "You might like"
-// img: optional thumbnail path
 const GAMES = [ 
   { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true }, 
   { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true }, 
   { id: "fortnite", title: "Fortnite OG (not working rn)", url: "https://fortniteog.lol/", tags: ["fps", "shooter"], pick: true }, 
   { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], pick: true }, ];
 
-// ---------- 2. ANNOUNCEMENTS: only you can post, because they live in this file ----------
 // title:  the headline          date:   YYYY-MM-DD (newest shows first)
 // body:   plain text (blank line = new paragraph) or HTML if you want links, e.g. <a href="...">here</a>
 // pinned: true keeps it at the top        author: optional
 const ANNOUNCEMENTS = [
-  { title: "Welcome to pastpapergenie v3", date: "2026-11-05", pinned: true,
-    body: "Games are at the top, with Featured games first and everything else under All games.\n\nYour saves and settings stay in your browser." },
-  { title: "New: Aero Pink theme", date: "2026-11-05",
-    body: "Open Settings and pick Aero Pink under Theme." },
+  {
+    title: "Welcome to pastpapergenie v3",
+    date: "2026-11-05",
+    author: "Ryan (xrompf)",
+    pinned: true,
+    body: "idk what to say here"
+  },
+  {
+    title: "New: Aero Pink theme",
+    date: "2026-11-05",
+    author: "Ryan (xrompf)",
+    body: "testing the announcement page."
+  },
 ];
 
 // ---------- 3. Settings (runs on every page, including /anime) ----------
