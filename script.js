@@ -1,27 +1,34 @@
+// pastpapergenie v3. Everything for the home page lives in this one file.
 
-const GAMES = [ 
-  { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"], pick: true }, 
-  { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"], pick: true }, 
-  { id: "cricket", title: "EA Cricket 07", url: "https://cricket07.dhaiwat.com/", tags: ["fps", "shooter"], pick: true }, 
-  { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"], pick: true }, ];
+// ---------- 1. YOUR GAMES: two lists, add or delete lines in either ----------
+// RECOMMENDED = your handpicked games (the big cards at the top).
+// GAMES       = any other games. "All games" shows everything from both lists, so you never have to list a game twice.
+// url:  a full https:// address (shown in a frame) or a path in this repo, like "resources/my-game/index.html"
+// tags: used for the filters and for "You might like"
+// img: optional thumbnail path
+// isolated: true  only for games in resources/ that say "needs cross-origin isolation". They open on their own page (play.html).
+const RECOMMENDED = [
+  { id: "amongus", title: "Among US (2019 version) with real players", url: "https://wasm.rip/files/amongus/legacy/", tags: ["covid", "psycological"] },
+  { id: "terraria", title: "Terraria", url: "https://playterraria.lol/game/", tags: ["retro", "sandbox"] },
+];
 
+const GAMES = [
+  { id: "cyberpunk", title: "Cyberpunk 2077 somehow wth", url: "https://cyberpunk2077.lol/", tags: ["triple-a", "Wasm port"] },
+  { id: "cricket", title: "EA Cricket 07", url: "https://cricket07.dhaiwat.com/", tags: ["fps", "shooter"] },
+];
+
+// Everything, with no duplicates. The rest of the file uses this.
+const ALL_GAMES = GAMES.concat(RECOMMENDED.filter(function (r) { return !GAMES.some(function (g) { return g.id === r.id; }); }));
+
+// ---------- 2. ANNOUNCEMENTS: only you can post, because they live in this file ----------
 // title:  the headline          date:   YYYY-MM-DD (newest shows first)
 // body:   plain text (blank line = new paragraph) or HTML if you want links, e.g. <a href="...">here</a>
 // pinned: true keeps it at the top        author: optional
 const ANNOUNCEMENTS = [
-  {
-    title: "Welcome to pastpapergenie v3",
-    date: "2026-11-05",
-    author: "Ryan (xrompf)",
-    pinned: true,
-    body: "idk what to say here"
-  },
-  {
-    title: "New: Aero Pink theme",
-    date: "2026-11-05",
-    author: "Ryan (xrompf)",
-    body: "testing the announcement page."
-  },
+  { title: "Welcome to pastpapergenie v3", date: "2026-11-05", pinned: true,
+    body: "Games are at the top, with Featured games first and everything else under All games.\n\nYour saves and settings stay in your browser." },
+  { title: "New: Aero Pink theme", date: "2026-11-05",
+    body: "Open Settings and pick Aero Pink under Theme." },
 ];
 
 // ---------- 3. Settings (runs on every page, including /anime) ----------
@@ -64,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!$('games')) return;   // the anime page only needs the settings above
   var VIEWS = ['games', 'play', 'saved', 'announcements', 'settings', 'about'];
   var favs = get('ppg_favs', []), recent = get('ppg_recent', []), tag = '', q = '';
-  var find = function (id) { return GAMES.filter(function (g) { return g.id === id; })[0]; };
+  var find = function (id) { return ALL_GAMES.filter(function (g) { return g.id === id; })[0]; };
   function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
   function colour(g) { var n = 0; for (var i = 0; i < g.id.length; i++) n = (n * 31 + g.id.charCodeAt(i)) % 40; return 'hsl(' + (200 + n) + ' 55% 42%)'; }
@@ -82,16 +89,15 @@ document.addEventListener('DOMContentLoaded', function () {
       '</span></td><td><a class="btn go" href="#/play/' + g.id + '">Play</a> <button data-fav="' + g.id + '">save</button></td></tr>';
   }
   function renderList() {
-    var tags = []; GAMES.forEach(function (g) { g.tags.forEach(function (t) { if (tags.indexOf(t) < 0) tags.push(t); }); }); tags.sort();
+    var tags = []; ALL_GAMES.forEach(function (g) { g.tags.forEach(function (t) { if (tags.indexOf(t) < 0) tags.push(t); }); }); tags.sort();
     $('tags').innerHTML = [''].concat(tags).map(function (t) {
       return '<a href="#/games" data-tag="' + esc(t) + '"' + (t === tag ? ' class="on"' : '') + '>' + (t ? esc(t) : 'all') + '</a>';
     }).join(' ');
-    var list = GAMES.filter(function (g) { return (!tag || g.tags.indexOf(tag) >= 0) && (g.title + ' ' + g.tags.join(' ')).toLowerCase().indexOf(q) >= 0; });
-    var feat = list.filter(function (g) { return g.featured; }), rest = list.filter(function (g) { return !g.featured; });
-    $('featured').innerHTML = feat.map(card).join('');
-    $('featwin').hidden = !feat.length;
-    $('list').innerHTML = rest.length ? '<tr><th></th><th>Title</th><th></th></tr>' + rest.map(row).join('') : (list.length ? '' : '<tr><td>No games match.</td></tr>');
-    $('allwin').hidden = !rest.length && list.length > 0;
+    var match = function (g) { return (!tag || g.tags.indexOf(tag) >= 0) && (g.title + ' ' + g.tags.join(' ')).toLowerCase().indexOf(q) >= 0; };
+    var list = ALL_GAMES.filter(match), picks = RECOMMENDED.filter(match);
+    $('featured').innerHTML = picks.map(card).join('');
+    $('featwin').hidden = !picks.length;
+    $('list').innerHTML = list.length ? '<tr><th></th><th>Title</th><th></th></tr>' + list.map(row).join('') : '<tr><td>' + (ALL_GAMES.length ? 'No games match.' : 'No games yet.') + '</td></tr>';
     paint();
   }
   function paint() {
@@ -105,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function sidebar() {
     var w = {};
     favs.concat(recent.slice(0, 5)).forEach(function (id) { var g = find(id); if (g) g.tags.forEach(function (t) { w[t] = (w[t] || 0) + 1; }); });
-    var rec = GAMES.filter(function (g) { return favs.indexOf(g.id) < 0 && recent.slice(0, 3).indexOf(g.id) < 0; })
+    var rec = ALL_GAMES.filter(function (g) { return favs.indexOf(g.id) < 0 && recent.slice(0, 3).indexOf(g.id) < 0; })
       .map(function (g) { return { g: g, s: g.tags.reduce(function (a, t) { return a + (w[t] || 0); }, 0) }; })
       .sort(function (a, b) { return b.s - a.s; }).slice(0, 5).map(function (x) { return x.g; });
     box('recs', 'You might like', rec);
@@ -115,8 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function openGame(id) {
     var g = find(id); if (!g) { location.hash = '#/games'; return; }
-    $('ptitle').textContent = g.title; $('frame').src = g.url; $('pfav').dataset.fav = g.id;
     if (!prefs.norecent) { recent = [g.id].concat(recent.filter(function (x) { return x !== g.id; })).slice(0, 12); put('ppg_recent', recent); }
+    if (g.isolated) { location.replace('play.html?g=' + encodeURIComponent(g.id)); return; }   // see README
+    $('ptitle').textContent = g.title; $('frame').src = g.url; $('pfav').dataset.fav = g.id;
     sidebar(); paint();
   }
   function route() {
