@@ -15,9 +15,9 @@
 <p class="blurb">Browser games and an anime browser.</p>
 </header>
 <nav>
-<a class="start" href="#/games">Games</a>
+<a href="#/games">Games</a>
 <a href="anime/">Anime</a>
-<a href="#/recommended">Recommended</a>
+<a href="#/announcements">Announcements</a>
 <a href="#/saved">Saved</a>
 <a href="#/settings">Settings</a>
 <a href="#/about">About</a>
@@ -30,8 +30,9 @@
 <div class="win"><h2>Games</h2><div class="in">
 <p>Pick a game. Nothing to install and no account. Saved games and history stay in this browser.</p>
 <p class="tags" id="tags"></p>
-<table id="list"></table>
 </div></div>
+<div class="win" id="featwin"><h2>Featured games</h2><div class="in"><div class="grid feat" id="featured"></div></div></div>
+<div class="win" id="allwin"><h2>All games</h2><div class="in"><table id="list"></table></div></div>
 </section>
 
 <section id="play" hidden>
@@ -46,17 +47,14 @@
 <div class="win"><h2>Saved games</h2><div class="in" id="savedlist"></div></div>
 </section>
 
-<section id="recommended" hidden>
-<div class="win"><h2>Picked</h2><div class="in"><ul id="picks"></ul></div></div>
-<div class="win"><h2>Worth a look elsewhere</h2><div class="in">
-<p>Not playable here yet. Each link goes to the project's own page, so check its licence before you host anything.</p>
-<ul id="elsewhere"></ul>
-</div></div>
+<section id="announcements" hidden>
+<div class="win"><h2>Announcements</h2><div class="in"><p>News and updates from the site owner.</p></div></div>
+<div id="posts"></div>
 </section>
 
 <section id="settings" hidden>
 <div class="win"><h2>Look</h2><div class="in">
-<p class="row"><label for="p-theme">Theme</label><select id="p-theme" data-pref="theme"><option value="aero">Aero (default)</option><option value="luna">Luna, XP blue</option><option value="classic">Classic green</option><option value="night">Night</option></select></p>
+<p class="row"><label for="p-theme">Theme</label><select id="p-theme" data-pref="theme"><option value="aero">Aero (default)</option><option value="pink">Aero Pink</option><option value="luna">Luna, XP blue</option><option value="classic">Classic green</option><option value="night">Night</option></select></p>
 <p class="row"><label for="p-font">Font</label><select id="p-font" data-pref="font"><option value="tahoma">Tahoma</option><option value="verdana">Verdana</option><option value="georgia">Georgia</option><option value="system">Your system font</option></select></p>
 <p class="row"><label for="p-size">Text size</label><select id="p-size" data-pref="size"><option value="s">Small</option><option value="m">Normal</option><option value="l">Large</option></select></p>
 <p class="row"><label for="p-width">Page width</label><select id="p-width" data-pref="width"><option value="n">Narrow</option><option value="m">Normal</option><option value="w">Wide</option></select></p>
