@@ -5,7 +5,7 @@ const RECOMMENDED = [
 ];
 
 const GAMES = [
-  { id: "1.12-u2-wasm", title: "1.12 U2 Wasm", url: "https://fallacious0.dedyn.io/Resources/1.12-u2-wasm.html", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/1.12-u2-wasm/logo" },
+  { id: "1.12-u2-wasm", title: "Minecraft 1.12", url: "https://fallacious0.dedyn.io/Resources/1.12-u2-wasm.html", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/1.12-u2-wasm/logo" },
   { id: "10-minutes-till-dawn", title: "10 Minutes Till Dawn", url: "https://fallacious0.dedyn.io/Resources/10-minutes-till-dawn", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/10-minutes-till-dawn/logo" },
   { id: "100ng", title: "100ng", url: "https://fallacious0.dedyn.io/Resources/100ng", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/100ng/logo" },
   { id: "10minutestilldawn", title: "10 Minutes Till Dawn", url: "https://fallacious0.dedyn.io/Resources/10minutestilldawn.html", tags: ["arcade"], img: "https://fallacious0.dedyn.io/Resources/10minutestilldawn/logo" },
